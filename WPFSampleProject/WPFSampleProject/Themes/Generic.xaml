@@ -1,0 +1,20 @@
+<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="clr-namespace:WPFSampleProject">
+
+
+    <Style TargetType="{x:Type local:MyCustomButton}">
+        <Setter Property="Background" Value="Black"/>
+        <Setter Property="Foreground" Value="White"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type local:MyCustomButton}">
+                    <Button x:Name="MainButton" HorizontalAlignment="Center" VerticalAlignment="Center" 
+                            Width="{TemplateBinding Width}" Height="{TemplateBinding Height}">
+                    </Button>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+</ResourceDictionary>

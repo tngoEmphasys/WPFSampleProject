@@ -8,12 +8,17 @@ namespace WPFSampleProject
     /// </summary>
     public partial class MainWindow : Window
     {
-        EmployeeList EmployeeList;
+        private EmployeeList _empList;
+        public EmployeeList EmployeeList
+        {
+            get { return _empList; }
+            set { _empList = value; }
+        }
         public MainWindow()
         {
             InitializeComponent();
             EmployeeList = new EmployeeList();
-            DataContext = EmployeeList;
+            DataContext = new { EmployeeList = EmployeeList } ;
         }
     }
 }

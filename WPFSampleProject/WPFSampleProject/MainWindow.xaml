@@ -19,12 +19,12 @@
         <Label Grid.Row="0" HorizontalAlignment="Center">List of Employees</Label>
         <DataGrid Grid.Row="1" ItemsSource="{Binding EmployeeList}" AlternatingRowBackground="AliceBlue" VirtualizingStackPanel.IsVirtualizing="True" VirtualizingStackPanel.VirtualizationMode="Recycling"/>
         <control:MyCustomButton 
-         Color="Crimson"
+         Color="{Binding Color}"
          x:Name = "customControl"  
          Width = "100" Height="20" Grid.Row="2" >
             <control:MyCustomButton.Template>
                 <ControlTemplate>
-                    <Button x:Name="MainButton" Content="Click Me" Command="{Binding CustomCommand}" >
+                    <Button x:Name="MainButton" Content="Click Me" Command="{Binding SubmitCommand}" >
                     </Button>
                 </ControlTemplate>
             </control:MyCustomButton.Template>

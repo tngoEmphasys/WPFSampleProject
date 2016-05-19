@@ -1,5 +1,6 @@
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
+using System.Windows.Media;
 using WPFSampleProject.Models;
 
 namespace WPFSampleProject.ViewModel
@@ -29,6 +30,15 @@ namespace WPFSampleProject.ViewModel
             get { return _empList; }
             set { Set(() => EmployeeList, ref _empList, value); }
         }
+
+        private Color _color;
+        public Color Color
+        {
+            get { return _color; }
+            set { Set(() => Color, ref _color, value); }
+        }
+
+
         #endregion
         #region Relay Commands
 
@@ -37,16 +47,19 @@ namespace WPFSampleProject.ViewModel
         #endregion
         public MainViewModel()
         {
+            _color = Colors.HotPink;
             SubmitCommand = new RelayCommand(SubmitForm);
         }
         public void LoadInitialData()
         {
             EmployeeList = new EmployeeList();
+            Color = Colors.Black;
         }
 
         public void SubmitForm()
         {
             EmployeeList.Add(new Employee("Ngo", "Trung"));
+            Color = Colors.BlueViolet;
         }
     }
 }

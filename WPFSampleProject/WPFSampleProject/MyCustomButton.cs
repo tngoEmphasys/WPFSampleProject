@@ -60,11 +60,28 @@ namespace WPFSampleProject
         {
             get
             {
-                return (Color)this.GetValue(ColorProperty);
+                return (Color)GetValue(ColorProperty);
             }
             set
             {
-                this.SetValue(ColorProperty, value);
+                SetValue(ColorProperty, value);
+            }
+        }
+
+        public static readonly DependencyProperty AddCommandProperty =
+            DependencyProperty.Register("AddCommand",
+            typeof(ICommand),
+            typeof(MyCustomButton));
+
+        public ICommand AddCommand
+        {
+            get
+            {
+                return (ICommand)GetValue(AddCommandProperty);
+            }
+            set
+            {
+                SetValue(AddCommandProperty, value);
             }
         }
         static void OnCustomCommand(object sender, ExecutedRoutedEventArgs e)
@@ -73,6 +90,10 @@ namespace WPFSampleProject
             MyCustomButton invoker = sender as MyCustomButton;
 
             //Do whatever you need
+            if(invoker.AddCommand != null)
+            {
+                invoker.AddCommand.Execute(null);
+            }
             
         }
 
@@ -81,7 +102,8 @@ namespace WPFSampleProject
                                                         new InputGestureCollection(
                                                             new InputGesture[] {
                                                                 new KeyGesture(Key.Enter),
-                                                                new MouseGesture(MouseAction.LeftClick) }
+                                                                new MouseGesture(MouseAction.LeftClick),
+                                                                new KeyGesture(Key.Escape)}
                                                                 ));
         public static readonly RoutedEvent InvertCallEvent = EventManager.RegisterRoutedEvent("InvertCall",
                             RoutingStrategy.Bubble, typeof(RoutedEventHandler), typeof(MyCustomButton));
@@ -99,12 +121,14 @@ namespace WPFSampleProject
         }
         static MyCustomButton()
         {
-            DefaultStyleKeyProperty.OverrideMetadata(typeof(MyCustomButton), 
-                new FrameworkPropertyMetadata(typeof(MyCustomButton)));
             CommandManager.RegisterClassCommandBinding(typeof(MyCustomButton),
                 new CommandBinding(MyCustomButton.CustomCommand, OnCustomCommand));
             EventManager.RegisterClassHandler(typeof(MyCustomButton), Mouse.MouseDownEvent,
                 new MouseButtonEventHandler(OnMouseDown));
+            DefaultStyleKeyProperty.OverrideMetadata(typeof(MyCustomButton), 
+                new FrameworkPropertyMetadata(typeof(MyCustomButton)));
+            
+            
 
         }
         static void OnMouseDown(object sender, MouseButtonEventArgs e)

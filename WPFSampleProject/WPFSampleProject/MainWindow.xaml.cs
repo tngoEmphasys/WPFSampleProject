@@ -1,5 +1,6 @@
 ﻿using System.Windows;
 using WPFSampleProject.Models;
+using WPFSampleProject.ViewModel;
 
 namespace WPFSampleProject
 {
@@ -8,17 +9,15 @@ namespace WPFSampleProject
     /// </summary>
     public partial class MainWindow : Window
     {
-        private EmployeeList _empList;
-        public EmployeeList EmployeeList
-        {
-            get { return _empList; }
-            set { _empList = value; }
-        }
+        
         public MainWindow()
         {
             InitializeComponent();
-            EmployeeList = new EmployeeList();
-            DataContext = new { EmployeeList = EmployeeList } ;
+            //DataContext = new { EmployeeList = EmployeeList } ;
+        }
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            (this.DataContext as MainViewModel).LoadInitialData();
         }
     }
 }

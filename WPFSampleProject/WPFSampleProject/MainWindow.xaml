@@ -6,11 +6,15 @@
         xmlns:local="clr-namespace:WPFSampleProject"
         xmlns:control="clr-namespace:WPFSampleProject"
         mc:Ignorable="d"
+        Loaded="Window_Loaded"
+        DataContext="{Binding Main, Source={StaticResource Locator}}"
         Title="MainWindow" Height="375" Width="525">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
-            <RowDefinition/>
+            <RowDefinition />
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
         </Grid.RowDefinitions>
         <Label Grid.Row="0" HorizontalAlignment="Center">List of Employees</Label>
         <ListBox Grid.Row="1" ItemsSource="{Binding EmployeeList}" Margin="0,0,0,37">
@@ -23,13 +27,15 @@
         <control:MyCustomButton 
          Color="Crimson"
          x:Name = "customControl"  
-         Width = "100" Height="20" Margin="210,287,207,0" Grid.Row="1" >
+         Width = "100" Grid.Row="2" >
             <control:MyCustomButton.Template>
                 <ControlTemplate>
-                    <Button x:Name="MainButton" Content="Click Me">
+                    <Button x:Name="MainButton" Content="Click Me" Command="{Binding CustomCommand}" >
                     </Button>
                 </ControlTemplate>
             </control:MyCustomButton.Template>
         </control:MyCustomButton>
+        <Button x:Name="Button" Content="Click Me" Command="{Binding SubmitCommand}" Grid.Row="3" >
+        </Button>
     </Grid>
 </Window>

@@ -73,6 +73,7 @@ namespace WPFSampleProject
             MyCustomButton invoker = sender as MyCustomButton;
 
             //Do whatever you need
+            
         }
 
         public static readonly ICommand CustomCommand = new RoutedUICommand("CustomCommand", "CustomCommand",

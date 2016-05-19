@@ -17,17 +17,11 @@
             <RowDefinition Height="auto"/>
         </Grid.RowDefinitions>
         <Label Grid.Row="0" HorizontalAlignment="Center">List of Employees</Label>
-        <ListBox Grid.Row="1" ItemsSource="{Binding EmployeeList}" Margin="0,0,0,37">
-            <ListBox.ItemTemplate>
-                <DataTemplate>
-                    <TextBlock Text="{Binding FirstName}" />
-                </DataTemplate>
-            </ListBox.ItemTemplate>
-        </ListBox>
+        <DataGrid Grid.Row="1" ItemsSource="{Binding}" AlternatingRowBackground="AliceBlue" VirtualizingStackPanel.IsVirtualizing="True" VirtualizingStackPanel.VirtualizationMode="Recycling"/>
         <control:MyCustomButton 
          Color="Crimson"
          x:Name = "customControl"  
-         Width = "100" Grid.Row="2" >
+         Width = "100" Height="20" Grid.Row="2" >
             <control:MyCustomButton.Template>
                 <ControlTemplate>
                     <Button x:Name="MainButton" Content="Click Me" Command="{Binding CustomCommand}" >

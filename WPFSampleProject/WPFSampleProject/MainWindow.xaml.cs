@@ -17,8 +17,7 @@ namespace WPFSampleProject
         public MainWindow()
         {
             InitializeComponent();
-            EmployeeList = new EmployeeList();
-            DataContext = new { EmployeeList = EmployeeList } ;
+            DataContext = new EmployeeList();
         }
     }
 }
